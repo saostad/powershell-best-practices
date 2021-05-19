@@ -1,3 +1,5 @@
+#https://adamtheautomator.com/powershell-objects/
+
 ## Define the hashtable
 $CarHashtable = @{
 	Brand      = 'Ford'
