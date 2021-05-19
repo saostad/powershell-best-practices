@@ -11,3 +11,10 @@ $CarHashtable = @{
 
 ## Create an object
 $CarObject = [PsCustomObject]$CarHashTable
+
+
+# Array of Objects
+$data = @(
+       [pscustomobject]@{FirstName='Kevin';LastName='Marquette'}
+       [pscustomobject]@{FirstName='John'; LastName='Doe'}
+   )
