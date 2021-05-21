@@ -1,36 +1,25 @@
 # this function returns a connected connection to microsoft sql server
-function CreateConnectionToDB {
-  $SQLServer = "DB-ADDRESS"
-  $DBName = "MY-DB-NAME"
-  
-  try {  
-    Import-Module CredentialManager 
-    
-    $MyCred = Get-StoredCredential -Target 'MY-DB-NAME'
-    
-    $uid = $MyCred.UserName
-    $password = $MyCred.GetNetworkCredential().Password
-  }
-  catch {
-    Write-Error "Something went wrong while accessing the credentials." 
-  }
-
-  
-  $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-  $SqlConnection.ConnectionString = "Server = $SQLServer; Database = $DBName; Integrated Security = False; TimeOut = $Timeout; User ID = $uid; Password = $password"
+function CreateDbConnection {    
+  param(
+    [Parameter(Mandatory = $true)][string]$uid,
+    [Parameter(Mandatory = $true)][string]$password,
+    [Parameter(Mandatory = $true)][string]$dbName,
+    [Parameter(Mandatory = $true)][string]$hostName
+  )
+  [System.Data.SqlClient.SqlConnection]$SqlConnection = New-Object System.Data.SqlClient.SqlConnection
+  $SqlConnection.ConnectionString = "Server = $hostName; Database = $dbName; Integrated Security = False; TimeOut = 100000; User ID = $uid; Password = $password"
   
   if ($SqlConnection.State -eq "close") {
-    # create a connection to db
-    Write-Host "Connecting to DB..." -ForegroundColor Gray -BackgroundColor DarkMagenta
+    log -level "progress" -msg "Connecting to DB $dbName host $hostName..."
     $SqlConnection.Open()
     if ($SqlConnection.State -eq "open") {
-      Write-Host "Connected to DB Successfully!" -ForegroundColor White -BackgroundColor DarkGreen
+      log -level "success" -msg "Connected to DB $dbName Successfully!"
       return $SqlConnection      
     }
     else {
-      Write-Host "Connection to DB failed!" -ForegroundColor Red -BackgroundColor Black
-      Write-Host "Retrying to connect to DB..." -ForegroundColor Gray -BackgroundColor DarkMagenta
-      return CreateConnectionToDB      
+      log -level "error" -msg "Connection to DB $dbName failed!"
+      log -msg "Retrying to connect to DB $dbName..."
+      return CreateDbConnection -uid $uid -password $password -dbName $dbName -hostName $hostName     
     }
   }
 } # CreateConnectionToDB
