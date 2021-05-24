@@ -8,3 +8,6 @@ function parse-com{
     
     # Code here
 }
+
+# Cell like here:
+parse-com -list "a", "b", "c"
