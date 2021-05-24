@@ -1,10 +1,9 @@
-# this function returns a connected connection to microsoft sql server
 function CreateDbConnection {    
   param(
-    [Parameter(Mandatory = $true)][string]$uid,
-    [Parameter(Mandatory = $true)][string]$password,
-    [Parameter(Mandatory = $true)][string]$dbName,
-    [Parameter(Mandatory = $true)][string]$hostName
+    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string]$uid,
+    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string]$password,
+    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string]$dbName,
+    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string]$hostName
   )
   [System.Data.SqlClient.SqlConnection]$SqlConnection = New-Object System.Data.SqlClient.SqlConnection
   $SqlConnection.ConnectionString = "Server = $hostName; Database = $dbName; Integrated Security = False; TimeOut = 100000; User ID = $uid; Password = $password"
