@@ -3,7 +3,7 @@ Write-Output "Writing logs to file $logFileName.log"
 
 Function Log {
   param(
-    [Parameter(Mandatory = $true)][String]$msg,
+    [Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][String]$msg,
     [Parameter(Mandatory = $false)][String]$level,
     [Parameter(Mandatory = $false)][System.ConsoleColor]$ForegroundColor,
     [Parameter(Mandatory = $false)][System.ConsoleColor]$BackgroundColor
