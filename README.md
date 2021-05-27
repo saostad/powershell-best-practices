@@ -7,3 +7,5 @@
 - Don’t use aliases in scripts. Ever! Use the full cmdlet name with its named parameters.
 - each function is written in .ps1 file and whether you want to compile it to a single PSM1 sign your script file.
 - never hard code any password / credential in plain text in script, instead always use credential manager
+
+### Recomended Source https://github.com/PoshCode/PowerShellPracticeAndStyle
