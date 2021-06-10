@@ -1,3 +1,5 @@
+# Collection if small powershell code samples.
+
 ## Best practices to create powershell module
 
 ### Recomended Source https://github.com/PoshCode/PowerShellPracticeAndStyle
