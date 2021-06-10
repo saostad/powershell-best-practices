@@ -1,4 +1,4 @@
-# Collection if small powershell code samples.
+# Collection of small powershell code samples.
 
 ## Best practices to create powershell module
 
