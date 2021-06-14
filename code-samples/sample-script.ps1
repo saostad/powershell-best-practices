@@ -13,6 +13,7 @@ try {
 }
 catch {
   # error handling code here
+  $_.Exception | Write-Output
 }
 finally {
   # clean up here 

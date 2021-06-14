@@ -1,5 +1,13 @@
+[string]$logDirectory = Join-Path -Path $PSScriptRoot -ChildPath "logs"
 [string]$logFileName = Get-Date -Format yyyy_MM_HH_mm_ss_fff
-Write-Output "Writing logs to file $logFileName.log"
+[string]$logFileFullPath = Join-Path $logDirectory -ChildPath "$logFileName.log"
+
+# if logs directory not exist create it
+if (-Not (Test-Path -PathType Container $logDirectory)) {
+  New-Item -ItemType Directory -Force -Path $logDirectory
+}
+
+Write-Output "Writing logs to file $logFileFullPath"
 
 Function Log {
   param(
@@ -10,7 +18,7 @@ Function Log {
   )
   
   $time = Get-Date -Format HH:mm:ss.fff
-  Add-Content "logs\\$logFileName.log" "$time $msg"
+  Add-Content "$logFileFullPath" "$time $msg"
   if ($ForegroundColor -and $BackgroundColor) {
     Write-Host "$time $msg" -ForegroundColor $ForegroundColor -BackgroundColor $BackgroundColor
   }
@@ -36,3 +44,6 @@ Function Log {
     Write-Host "$time $msg"
   }
 }
+
+# use example
+Log -msg "test"
