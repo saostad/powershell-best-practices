@@ -47,7 +47,7 @@ $collectionsCmd.Connection = $sccmCon
 $collectionsCmd.CommandText = $collectionsQuery
 [System.Data.SqlClient.SqlDataReader]$sccmDataReader = $collectionsCmd.ExecuteReader()
 
-$dataTable = New-Object System.Data.DataTable 
+[System.Data.DataTable]$dataTable = New-Object System.Data.DataTable
 $dataTable.Load($sccmDataReader)
 $numRows = $dataTable.Rows.Count
 log -level "success" -msg "$("{0:N0}" -f $numRows) rows downloaded." 
