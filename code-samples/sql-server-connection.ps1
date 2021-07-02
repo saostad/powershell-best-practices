@@ -51,3 +51,6 @@ $collectionsCmd.CommandText = $collectionsQuery
 $dataTable.Load($sccmDataReader)
 $numRows = $dataTable.Rows.Count
 log -level "success" -msg "$("{0:N0}" -f $numRows) rows downloaded." 
+
+# to access each row
+$dataTable.Rows.ForEach({ Write-Host $_.ItemArray }) 

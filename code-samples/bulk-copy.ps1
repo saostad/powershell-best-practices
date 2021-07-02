@@ -4,7 +4,7 @@
 
 $SqlBulkCopy.EnableStreaming = $true
 $SqlBulkCopy.DestinationTableName = $dst.dstTblName
-$SqlBulkCopy.BatchSize = 10000 # Another candidate for function parameter
+$SqlBulkCopy.BatchSize = 10000
 $SqlBulkCopy.BulkCopyTimeout = 300 # seconds, 0 (zero) = no timeout limit
 
 $SqlBulkCopy.WriteToServer($srcDataReader)
