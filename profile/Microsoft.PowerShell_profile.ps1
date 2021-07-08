@@ -1,4 +1,4 @@
 Import-Module oh-my-posh
-Set-PoshPrompt -Theme jandedobbeleer
+Set-PoshPrompt -Theme zash
 
 Set-PSReadLineOption -PredictionSource History
