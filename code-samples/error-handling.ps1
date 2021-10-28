@@ -2,7 +2,7 @@ try {
   # code here
 }
 catch {
-  $_.Exception | Write-Output
+  $_.Exception | Write-Error
 }
 finally {
   # cleanup here
