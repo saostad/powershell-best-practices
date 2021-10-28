@@ -1,4 +1,6 @@
 # Read stored credentials from windows credential manager
+# https://www.powershellgallery.com/packages/CredentialManager/2.0
+# Install-Module -Name CredentialManager
 
 try {  
   Import-Module CredentialManager 
