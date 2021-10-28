@@ -9,7 +9,7 @@ try {
   $Password = $MyCred.GetNetworkCredential().Password
 }
 catch {
-  Write-Error "Something went wrong while accessing the credentials." 
+  $_.Exception | Write-Error
 }
 
 # Example How to use it
